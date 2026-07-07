@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#141824">
+  <title>Election Manual Assistant</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <header>
+    <div class="head-inner">
+      <h1>Election Manual Assistant</h1>
+      <p class="sub">Anne Arundel County Election Judges&rsquo; Manual &middot; works fully offline</p>
+    </div>
+    <div class="flagband" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  </header>
+
+  <main>
+    <p class="notice"><strong>Reference assistant only.</strong> Verify excerpts against the official manual and Board instructions before acting. Excerpts come from a scanned manual and may contain scan artifacts &mdash; page images show the original.</p>
+
+    <section class="panel" aria-label="Ask the manual">
+      <label for="q">Ask the manual</label>
+      <div class="askrow">
+        <input id="q" type="search" enterkeyhint="search" autocomplete="off"
+               placeholder="e.g. What do I do if a voter is not in the pollbook?">
+        <button id="searchBtn" class="btn primary">Search</button>
+      </div>
+      <div class="askrow secondary-row">
+        <button id="voiceBtn" class="btn ghost">&#127908; Speak</button>
+        <button id="clearBtn" class="btn ghost">Clear</button>
+      </div>
+      <div id="topics" class="topics" aria-label="Common questions"></div>
+    </section>
+
+    <section class="panel" aria-live="polite" aria-label="Results">
+      <p id="status">Ask a question to begin.</p>
+      <div id="best"></div>
+      <div id="more"></div>
+    </section>
+  </main>
+
+  <footer>
+    <span id="pagecount"></span>
+    <span>Prototype v2.4</span>
+  </footer>
+
+  <dialog id="viewer">
+    <div class="viewer-head">
+      <div id="viewer-title"></div>
+      <button id="viewer-close" class="btn ghost" aria-label="Close page view">Close &#10005;</button>
+    </div>
+    <div id="viewer-body"></div>
+    <div class="viewer-nav">
+      <button id="viewer-prev" class="btn ghost">&larr; Previous page</button>
+      <button id="viewer-next" class="btn ghost">Next page &rarr;</button>
+    </div>
+  </dialog>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("sw.js");
+    }
+  </script>
+</body>
+</html>

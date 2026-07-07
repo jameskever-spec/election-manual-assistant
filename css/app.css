@@ -1,0 +1,202 @@
+/* Election Manual Assistant
+   Palette: ballot paper + Maryland civic
+   --paper  #FAF9F4  background, like ballot stock
+   --ink    #1C1F2A  primary text / header
+   --gold   #B07C10  Maryland gold (accessible on paper), #EAAA00 raw for band
+   --red    #C8102E  reserved for warnings only
+   --line   #D9D6CC  hairlines
+*/
+:root {
+  --paper: #FAF9F4;
+  --ink: #1C1F2A;
+  --ink-soft: #4A4E5C;
+  --gold: #B07C10;
+  --gold-bright: #EAAA00;
+  --red: #C8102E;
+  --line: #D9D6CC;
+  --card: #FFFFFF;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-size: 18px; line-height: 1.5; }
+
+header { background: var(--ink); color: #fff; }
+.head-inner { max-width: 860px; margin: 0 auto; padding: 20px 20px 16px; }
+h1 { margin: 0; font-size: 26px; letter-spacing: .2px; }
+.sub { margin: 4px 0 0; font-size: 14px; opacity: .85; }
+
+/* Signature: Maryland flag band — black/gold/red/white quarters */
+.flagband { display: flex; height: 5px; }
+.flagband i { flex: 1; }
+.flagband i:nth-child(1) { background: #000; }
+.flagband i:nth-child(2) { background: var(--gold-bright); }
+.flagband i:nth-child(3) { background: var(--red); }
+.flagband i:nth-child(4) { background: #fff; }
+
+main { max-width: 860px; margin: 0 auto; padding: 18px 16px 40px; }
+
+.notice {
+  border: 1.5px solid var(--gold);
+  background: #FFF8E6;
+  color: #4A3A00;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 15px;
+  margin: 0 0 16px;
+}
+
+.panel {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 18px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 3px rgba(28,31,42,.05);
+}
+
+label { display: block; font-weight: 700; margin-bottom: 10px; font-size: 17px; }
+
+.askrow { display: flex; gap: 10px; flex-wrap: wrap; }
+.secondary-row { margin-top: 10px; }
+
+#q {
+  flex: 1 1 260px;
+  font: inherit;
+  font-size: 19px;
+  padding: 14px 16px;
+  border: 2px solid var(--ink-soft);
+  border-radius: 12px;
+  background: #fff;
+  min-height: 54px;
+}
+#q:focus-visible { outline: 3px solid var(--gold); outline-offset: 1px; }
+
+.btn {
+  font: inherit; font-weight: 700;
+  border: 0; border-radius: 12px;
+  padding: 14px 20px;
+  min-height: 54px;
+  cursor: pointer;
+}
+.btn:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+.primary { background: var(--ink); color: #fff; }
+.primary:active { transform: translateY(1px); }
+.ghost { background: #F0EEE6; color: var(--ink); border: 1px solid var(--line); }
+.listening { background: var(--gold-bright); color: var(--ink); }
+
+.topics { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+.topic {
+  font: inherit; font-size: 15px; font-weight: 600;
+  background: #fff; color: var(--ink);
+  border: 1.5px solid var(--line); border-radius: 999px;
+  padding: 9px 14px; min-height: 42px; cursor: pointer;
+}
+.topic:hover, .topic:focus-visible { border-color: var(--gold); outline: none; }
+
+#status { margin: 0 0 8px; color: var(--ink-soft); font-size: 16px; }
+
+.card {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--card);
+  padding: 14px 16px;
+  margin: 12px 0;
+}
+.card.best { border: 2px solid var(--ink); }
+.best-tag {
+  display: inline-block; font-size: 12px; font-weight: 800;
+  letter-spacing: .8px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 6px;
+}
+.card-head { margin-bottom: 8px; }
+
+/* Citation chip — the hero of every answer */
+.chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--ink); color: #fff;
+  border-radius: 8px; padding: 6px 12px 6px 8px;
+  font-size: 14.5px; font-weight: 700; letter-spacing: .2px;
+}
+.chip-band { width: 4px; align-self: stretch; border-radius: 2px; background: var(--gold-bright); }
+
+.excerpt { white-space: pre-wrap; font-size: 17px; line-height: 1.55; }
+mark { background: #FFE9A8; color: inherit; padding: 0 2px; border-radius: 3px; }
+
+.card-actions { margin-top: 10px; }
+.card-actions .btn { min-height: 46px; padding: 10px 16px; font-size: 16px; }
+
+details { margin-top: 6px; }
+summary {
+  cursor: pointer; font-weight: 700; color: var(--ink);
+  padding: 10px 4px; font-size: 16px;
+}
+
+footer {
+  max-width: 860px; margin: 0 auto; padding: 0 16px 30px;
+  display: flex; justify-content: space-between; gap: 10px;
+  color: var(--ink-soft); font-size: 13.5px;
+}
+
+/* Full-page viewer */
+dialog#viewer {
+  width: min(760px, calc(100vw - 24px));
+  max-height: calc(100dvh - 40px);
+  border: 1px solid var(--line); border-radius: 16px;
+  padding: 0; background: var(--card); color: var(--ink);
+  display: flex; flex-direction: column;
+}
+dialog#viewer:not([open]) { display: none; }
+dialog::backdrop { background: rgba(28,31,42,.55); }
+.viewer-head {
+  display: flex; justify-content: space-between; align-items: center; gap: 10px;
+  padding: 14px 16px; border-bottom: 1px solid var(--line);
+}
+#viewer-body {
+  padding: 16px; overflow-y: auto; flex: 1;
+  font-size: 17px; line-height: 1.6; white-space: normal;
+}
+.viewer-nav {
+  display: flex; justify-content: space-between; gap: 10px;
+  padding: 12px 16px; border-top: 1px solid var(--line);
+}
+
+@media (max-width: 480px) {
+  body { font-size: 17px; }
+  h1 { font-size: 22px; }
+  .panel { padding: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+/* v1.1 — TOC page handling */
+.toc-tag {
+  font-style: normal; font-weight: 600; font-size: 12px;
+  background: var(--gold-bright); color: var(--ink);
+  border-radius: 6px; padding: 2px 7px; margin-left: 6px;
+}
+.viewer-note {
+  border: 1.5px solid var(--gold);
+  background: #FFF8E6; color: #4A3A00;
+  border-radius: 10px; padding: 10px 12px;
+  font-size: 15px; margin: 0 0 14px;
+}
+
+/* v1.2 — live TOC links */
+.toc-link {
+  display: block; width: 100%; text-align: left;
+  font: inherit; font-size: 17px; color: var(--ink);
+  background: none; border: 0; border-bottom: 1px solid #EEEBE2;
+  padding: 10px 6px; cursor: pointer; border-radius: 6px;
+}
+.toc-link:hover, .toc-link:focus-visible { background: #FFF4D6; outline: none; }
+.toc-link.ref { color: var(--gold); font-weight: 700; }
+.toc-dead { display: block; padding: 10px 6px; color: var(--ink-soft); }
+
+/* v1.6 — page images + degradation banners */
+.viewer-note.warn { border-color: var(--red); background: #FDECEE; color: #6B0F1E; }
+.page-img { width: 100%; height: auto; border: 1px solid var(--line); border-radius: 10px; margin: 0 0 14px; }
+.pg-text summary { font-size: 15px; color: var(--ink-soft); }
+.pg-text div { margin-top: 10px; }
